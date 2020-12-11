@@ -1,0 +1,42 @@
+replicaCount: 3
+
+image:
+  repository: c19p/c19
+  pullPolicy: IfNotPresent
+  tag: "0.1.0"
+
+service:
+  type: ClusterIP
+  port: 3097
+
+agent:
+  port: 3097
+
+connection:
+  port: 4097
+  push_interval: 1000
+  pull_interval: 60000
+  r0: 3
+  timeout: 5000
+
+state:
+  ttl: false
+  purge_interval: 60000
+
+config:
+  filename: /etc/c19/config.yaml
+
+log:
+  level: c19=trace
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+
+serviceAccount:
+  create: false
+
+ingress:
+  enabled: false
