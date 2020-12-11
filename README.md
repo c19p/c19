@@ -44,7 +44,8 @@ Every contribution matters! And we greatly appreciate any help in improving and 
 ## License
 BSD-3-Clause.
 
-[The User Guide]: ()
+[The User Guide]: https://c19p.github.io/user-guide/title-page.html
+[User Guide]: https://c19p.github.io/user-guide/title-page.html
 [The Developer Guide]: ()
 [Deployment Strategies]: ()
 [Getting Started]: ()
