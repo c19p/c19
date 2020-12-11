@@ -46,9 +46,10 @@ BSD-3-Clause.
 
 [The User Guide]: https://c19p.github.io/user-guide/title-page.html
 [User Guide]: https://c19p.github.io/user-guide/title-page.html
-[The Developer Guide]: ()
-[Deployment Strategies]: ()
-[Getting Started]: ()
-[Contributing]: ()
-[Motivation]: ()
-[Use Cases]: ()
+[The Developer Guide]: https://c19p.github.io/developer-guide/
+[Developer Guide]: https://c19p.github.io/developer-guide/
+[Deployment Strategies]: https://c19p.github.io/user-guide/deployment-strategies.html
+[Getting Started]: https://c19p.github.io/user-guide/ch01-00-getting-started.html
+[Contributing]: https://c19p.github.io/developer-guide/contributing.html
+[Motivation]: https://c19p.github.io/user-guide/motivation.html
+[Use Cases]: https://c19p.github.io/user-guide/use-cases.html
