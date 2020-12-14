@@ -33,7 +33,7 @@ spec:
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          args: ["./c19", "--config", "{{ .Values.config.filename }}"]
+          args: ["/usr/local/bin/c19", "--config", "{{ .Values.config.filename }}"]
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: agent
