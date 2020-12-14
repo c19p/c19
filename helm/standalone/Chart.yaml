@@ -1,9 +1,0 @@
-apiVersion: v2
-name: c19-standalone
-description: The C19 Protocol / Standalone Deployment
-type: application
-version: 0.1.0
-appVersion: 0.1.0
-maintainers:
-  - name: Chen Fisher
-    email: chen.fisher@gmail.com

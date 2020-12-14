@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["_PeerProvider_registry",""]],"enum":[["Peer",""]],"mod":[["k8s","An implementation of the peer provider."],["static_peer_provider","An implementation of the peer provider."]],"trait":[["PeerProvider",""]]});

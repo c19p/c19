@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["_Agent_registry",""]],"mod":[["default","Default implementation of the Agent trait."]],"trait":[["Agent","The Agent trait."]]});

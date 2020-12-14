@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["get_handler","Returns the value associated with the given key."],["handler","Accepts a request and dynamically dispatches the handler based on the method of the request."],["set_handler","Sets the key and value specified in the request."]],"static":[["__init215733339167654759",""]],"struct":[["Default","The Default struct."]],"type":[["Result",""]]});

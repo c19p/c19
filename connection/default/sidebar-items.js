@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["get_handler","Returns an HTTP response with the full state as JSON."],["handler",""],["set_handler","Accepts a JSON body that represents a state. Merges it with its own state."]],"static":[["__init8791889224756635807",""]],"struct":[["Default",""]],"type":[["Result",""]]});

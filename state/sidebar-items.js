@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["_State_registry",""]],"mod":[["data_seeder",""],["default","The default implementation of the State layer."]],"trait":[["CloneState",""],["State","The State trait."],["StateValue","A trait used as a protocol between different components that use the state."]],"type":[["SafeState","An atomic reference to a state."]]});

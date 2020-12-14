@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["epoch","Returns the current time in seconds since epoch."]],"trait":[["Sample","A trait to be implemented on iterators to allow conveniently sampling of set of random elements."]]});

@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["run","Initializes the state and runs the connection and agent layers."]],"mod":[["agent","The Agent layer."],["config","The C19 configuration."],["connection","The Connection layer."],["helpers","A collection of helpful functions."],["state","The State layer."]]});
