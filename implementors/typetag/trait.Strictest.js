@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["c19"] = [{"text":"impl Strictest for dyn Agent","synthetic":false,"types":[]},{"text":"impl Strictest for dyn PeerProvider","synthetic":false,"types":[]},{"text":"impl Strictest for dyn Connection","synthetic":false,"types":[]},{"text":"impl Strictest for dyn DataSeeder","synthetic":false,"types":[]},{"text":"impl Strictest for dyn State","synthetic":false,"types":[]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

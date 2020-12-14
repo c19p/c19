@@ -1,0 +1,77 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `c19` crate."><meta name="keywords" content="rust, rustlang, rust-lang, c19"><title>c19 - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../ayu.css" disabled ><script id="default-settings"></script><script src="../storage.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="alternate icon" type="image/png" href="../favicon-16x16.png">
+<link rel="alternate icon" type="image/png" href="../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../down-arrow.svg");}</style></head><body class="rustdoc mod"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../c19/index.html'><div class='logo-container rust-logo'><img src='../rust-logo.png' alt='logo'></div></a><p class="location">Crate c19</p><div class="block version"><p>Version 0.1.0</p></div><div class="sidebar-elems"><a id="all-types" href="all.html"><p>See all c19's items</p></a><div class="block items"><ul><li><a href="#modules">Modules</a></li><li><a href="#functions">Functions</a></li></ul></div><p class="location"></p><script>window.sidebarCurrent = {name: "c19", ty: "mod", relpath: "../"};</script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><script src="../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" class="help-button">?</button>
+                <a id="settings-menu" href="../settings.html"><img src="../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="../src/c19/lib.rs.html#1-137" title="goto source code">[src]</a></span><span class="in-band">Crate <a class="mod" href="">c19</a></span></h1><div class="docblock"><h1 id="the-c19-protocol" class="section-header"><a href="#the-c19-protocol">The C19 Protocol</a></h1>
+<p>A variant of the <a href="https://en.wikipedia.org/wiki/Gossip_protocol">Gossip protocol</a> that allows a
+group of services to agree on a service-wide state.</p>
+<p>The state is shared across a distributed set of services which in effect means that each
+service has the data available locally.</p>
+<p>The C19 protocol decouples the process of fetching the data from using it.</p>
+<p>Consider a service which depends on another service to get subscription data for a user. Many
+considerations should be taken into account on the availability of the other service. The
+dependent service is responsible for both retrieving the data and using it, but retrieving the
+data should never be its main focus. Handling errors and cases where the other service fails to
+respond is a cognitive overhead and not the main responsibility of the dependent.</p>
+<p>Services like Istio exist to solve this problem. But nothing beats having the data available
+locally. By decoupling the process of fetching the data from using it, the service can focus on
+using the data and have C19 handle the fetching.</p>
+<p>C19 is a simple, powerful and extensible system that gurantees reliability, availability, efficiency
+and low resource footprint. It does so by having an agent attached to each service and exchange
+its state in an efficient manner with other c19 agents, effectively making sure the data is
+available locally to the service.</p>
+<h1 id="the-three-layers" class="section-header"><a href="#the-three-layers">The Three Layers</a></h1>
+<p>C19 is built upon three different layers: The Agent, State and Connection layers.</p>
+<p>Many different types of each layer can be implemented and can work in conjuction with the other
+layers. Depending on your usage, you can choose the right layer that suits your needs.</p>
+<h2 id="the-agent-layer" class="section-header"><a href="#the-agent-layer">The Agent Layer</a></h2>
+<p>The agent layer is responsible for communicating with your app. It allows your app to set and
+get values to and from the state.</p>
+<h2 id="the-state-layer" class="section-header"><a href="#the-state-layer">The State Layer</a></h2>
+<p>The state layer is responsible for holding the data and to manage it. It exposes an API for the
+Agent and Connection layers to set and get values from and to it. For example, the
+<code>Defaul</code> state layer implementation is a Key/Value store that supports TTL for values.</p>
+<p>Different state layers can be implemented to handle data in different ways. One might handle
+data of files and versions likes Git. It doesn't have to be a Key/Value store.</p>
+<h2 id="the-connection-layer" class="section-header"><a href="#the-connection-layer">The Connection Layer</a></h2>
+<p>The connection layer is responsible for spreading the state (data) across the system by
+connecting to other agents (peers). </p>
+<p>Different connection layers can be implemented to support different protocols and handle the
+data in different ways. One implementation might handle big data in a more efficient way than
+another implementation.</p>
+<h1 id="what-to-consider-when-using-the-c19-protocol" class="section-header"><a href="#what-to-consider-when-using-the-c19-protocol">What to Consider When Using the C19 Protocol</a></h1><h4 id="1-when-data-changes-at-a-high-rate-and-you-need-to-access-the-most-recent-change-in-realtime" class="section-header"><a href="#1-when-data-changes-at-a-high-rate-and-you-need-to-access-the-most-recent-change-in-realtime">1. When data changes at a high rate and you need to access the most recent change in realtime.</a></h4>
+<p>In the example above, you can imagine subscription data does not change so often and when it
+does, it's ok to get the change after a second. If you need immediate access to the most recent 
+changes and cannot bare a stale date, then you should consider a different option. The system is a 
+distributed system with an eventual consistency.  The rate in which the data is being propagated 
+throughout the system depends on your configuration and the implementation of the different layers, 
+but it's not strict consistency.</p>
+<p>C19 should answer most use-cases as mostly systems can tolerate data that is near-realtime or stale.</p>
+<h4 id="2-when-your-data-is-very-large-and-changes-very-often" class="section-header"><a href="#2-when-your-data-is-very-large-and-changes-very-often">2. When your data is very large and changes very often.</a></h4>
+<p>There's no limit set in the code. It's up to you to decide the limit of your data. 
+The data is held in memory and being exchanged over the network between peers. You
+should consider those two parameters when you decide on your data limits and the different
+layers you choose to use.</p>
+<h1 id="who-this-documentation-is-for" class="section-header"><a href="#who-this-documentation-is-for">Who This Documentation Is For?</a></h1>
+<p>C19 has been designed to be easily extensible. One could implement different strategies for
+exhanging state between peers, for holding data in memory, for applying different algorithms
+for state management, etc.</p>
+<p>This documentation is about that. It's a walkthrough of the code so that you can find your way
+around and extend the protocol as needed.</p>
+<p>If you'd like to learn more about using C19 as it is, please read the user-guide book. [FIXME: link to
+user-guide book]</p>
+<p>Accompaning this documentation is the book about the high level design and some ideas on how to
+extend the protocol. Read more about it here. [FIXME: link to the developer guide]</p>
+<h1 id="kubernetes" class="section-header"><a href="#kubernetes">Kubernetes</a></h1>
+<p>While the C19 protocol can be used anywhere, it was design to be Kubernetes first. This means
+that you will find different deployment strategies, peer providers and an all-in-all mindset of
+Kubernetes. One of the goals of the project is to &quot;Just work&quot; and to allow a user of the
+project a fast and easy-to-reason-about deployment to a Kubernetes cluster.</p>
+</div><h2 id="modules" class="section-header"><a href="#modules">Modules</a></h2>
+<table><tr class="module-item"><td><a class="mod" href="agent/index.html" title="c19::agent mod">agent</a></td><td class="docblock-short"><p>The Agent layer.</p>
+</td></tr><tr class="module-item"><td><a class="mod" href="config/index.html" title="c19::config mod">config</a></td><td class="docblock-short"><p>The C19 configuration.</p>
+</td></tr><tr class="module-item"><td><a class="mod" href="connection/index.html" title="c19::connection mod">connection</a></td><td class="docblock-short"><p>The Connection layer.</p>
+</td></tr><tr class="module-item"><td><a class="mod" href="helpers/index.html" title="c19::helpers mod">helpers</a></td><td class="docblock-short"><p>A collection of helpful functions.</p>
+</td></tr><tr class="module-item"><td><a class="mod" href="state/index.html" title="c19::state mod">state</a></td><td class="docblock-short"><p>The State layer.</p>
+</td></tr></table><h2 id="functions" class="section-header"><a href="#functions">Functions</a></h2>
+<table><tr class="module-item"><td><a class="fn" href="fn.run.html" title="c19::run fn">run</a></td><td class="docblock-short"><p>Initializes the state and runs the connection and agent layers.</p>
+</td></tr></table></section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../";window.currentCrate = "c19";</script><script src="../main.js"></script><script defer src="../search-index.js"></script></body></html>
