@@ -25,5 +25,5 @@ Every contribution is appreciated. The following is a list of recommendations th
 - Roadmap
 
 
-[User Guide]: (https://c19p.github.io/user-guide/)
-[Developer Guide]: (https://c19p.github.io/developer-guide/)
+[User Guide]: https://c19p.github.io/user-guide/
+[Developer Guide]: https://c19p.github.io/developer-guide/
