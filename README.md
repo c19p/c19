@@ -1,17 +1,17 @@
 # The C19 Protocol
-### A Distributed Shared State for Kubernetes (and more)
 
-The C19 protocol allows you to easily share data (state) across a set of pods. It allows a group of services to agree on a service-wide state.
-The data becomes available locally to your service.
+The C19 protocol is a variant of the [Gossip protocol]. It allows a group of services to agree on a service-wide state.
+
+The C19 protocol can help you share a state between your Kubernetes pods and have that state available to your application locally, without worrying 
+about fetching the data.
 
 ![Sharing state use case](resources/sharing-state.png)
 
-C19 decouples the process of fetching the data from using it. Consider a case of two or more microservices with different dependencies. 
-A dependant service would have to handle fetching the data from other services. It has to consider cases of latency and unavailability. 
-But fetching the data is not its main focus and should not be its main concern. By decoupling fetching the data from using it, C19 makes sure 
-the data is available locally to the service. 
+C19 attaches to your pods and decouples the process of fetching the data from using it. Using a label selector you can easily create a group of pods 
+you wish to share a state.
 
-C19 is a simple, powerful and extensible system and can reduce the complexities by taking care of fetching the data and making it available locally to your services.
+C19 is a simple, powerful and extensible system and can reduce the complexities by taking care of fetching the data and making it available locally to your services. It can 
+run within a Kubernetes cluster or without one.
 
 ## The Books
 The best and most extensive source of information is the [User Guide]. Please read it!
@@ -25,7 +25,7 @@ And we have a second book ready if you wish to contribute to the C19 project.
 
 ## A Very Quick Start
 The following Kubernetes configuration files will deploy a cluster of Nginx pods with an attached c19 agent for each one. You can then explore the way data is shared across 
-your pods and how it becomes available locally to the Nginx service.
+your pods and how it becomes available locally to the Nginx service. Nginx in this example simulates your application.
 
 To attach a C19 agent to your Nginx deployment, you will need two files:
 1. A configmap that will hold your C19 configuration. You can read about the C19 configuration [here].
@@ -125,8 +125,8 @@ To explore how to do that, please refer to the [Testing the Deployment] section 
 For a step-by-step guide to what happened above, please refer to the [Getting Started] section.
 
 ## Kubernetes
-While the title of this README says "A Distributed Shared State **for Kubernetes**", it's actually not a must. C19 can be deployed anywhere and is not tightly 
-coupled to a Kubernetes cluster. We find targeting Kubernetes as most appealing to the community and answers most use cases.
+While this README targets Kubernetes in its examples, a Kubernetes cluster is actually not a must. C19 can be deployed anywhere and is not tightly 
+coupled to a Kubernetes cluster. 
 
 Please refer to the [Non-Kubernetes Deployment] section in the user guide to explore a non-Kubernetes deployment.
 
@@ -164,6 +164,7 @@ Every contribution matters! And we greatly appreciate any help in improving and 
 ## License
 BSD-3-Clause.
 
+[Gossip protocol]: https://en.wikipedia.org/wiki/Gossip_protocol
 [The User Guide]: https://c19p.github.io/user-guide/title-page.html
 [User Guide]: https://c19p.github.io/user-guide/title-page.html
 [The Developer Guide]: https://c19p.github.io/developer-guide/
