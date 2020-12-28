@@ -1,6 +1,7 @@
 # The C19 Protocol
 
-The C19 protocol is a variant of the [Gossip protocol]. It allows a group of services to agree on a service-wide state.
+The C19 protocol is a variant of the [Gossip protocol]. It allows a group of services to agree on a service-wide state. It is a replicated cache 
+and can be embedded right into your Kubernetes pods.
 
 The C19 protocol can help you share a state between your Kubernetes pods and have that state available to your application locally, without worrying 
 about fetching the data.
